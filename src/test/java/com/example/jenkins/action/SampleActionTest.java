@@ -18,12 +18,12 @@ public class SampleActionTest {
   @DisplayName("Test check normal.")
   public void testCheckNormal() {
     HttpServletRequest request = createMock(HttpServletRequest.class);
+    SampleAction action = new SampleAction();
 
     expect(request.getParameter("FirstName")).andReturn("firstName");
     expect(request.getParameter("LastName")).andReturn("lastName");
 
     replay(request);
-    SampleAction action = new SampleAction();
     boolean result = action.checkParameter(request);
     verify(request);
 
