@@ -1,6 +1,6 @@
 package com.example.jenkins.action;
 
-import com.example.jenkins.dto.SampleDTO;
+import com.example.jenkins.dto.SampleDto;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -55,7 +55,7 @@ public class SampleAction {
    * @return result jsp file path
    */
   public final String execute(final HttpServletRequest request) {
-    SampleDTO dto = new SampleDTO(firstName, lastName);
+    SampleDto dto = new SampleDto(firstName, lastName);
 
     HttpSession session = request.getSession(true);
     session.setAttribute("dto", dto);

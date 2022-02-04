@@ -3,7 +3,7 @@ package com.example.jenkins.dto;
 import java.io.Serializable;
 
 /** DTO class for SampleServlet. */
-public class SampleDTO implements Serializable {
+public class SampleDto implements Serializable {
   /** First name of the user. */
   private String firstName;
   /** Last name of the user. */
@@ -17,7 +17,7 @@ public class SampleDTO implements Serializable {
    * @param firstName first name of the user
    * @param lastName last name of the user
    */
-  public SampleDTO(final String firstName, final String lastName) {
+  public SampleDto(final String firstName, final String lastName) {
     this.setFirstName(firstName);
     this.setLastName(lastName);
     this.setMessage("Hello");

@@ -12,17 +12,18 @@ import javax.servlet.http.HttpSession;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+/** Test Web application action. */
 public class SampleActionTest {
   @Test
   @DisplayName("Test check normal.")
   public void testCheckNormal() {
-    SampleAction action = new SampleAction();
     HttpServletRequest request = createMock(HttpServletRequest.class);
 
     expect(request.getParameter("FirstName")).andReturn("firstName");
     expect(request.getParameter("LastName")).andReturn("lastName");
 
     replay(request);
+    SampleAction action = new SampleAction();
     boolean result = action.checkParameter(request);
     verify(request);
 
@@ -31,12 +32,12 @@ public class SampleActionTest {
 
   @Test
   public void testCheckError1() {
-    SampleAction action = new SampleAction();
     HttpServletRequest request = createMock(HttpServletRequest.class);
 
     expect(request.getParameter("FirstName")).andReturn(null);
-
     replay(request);
+
+    SampleAction action = new SampleAction();
     boolean result = action.checkParameter(request);
     verify(request);
 
@@ -46,12 +47,12 @@ public class SampleActionTest {
   @Test
   public void testCheckError2() {
     HttpServletRequest request = createMock(HttpServletRequest.class);
-    SampleAction action = new SampleAction();
 
     expect(request.getParameter("FirstName")).andReturn("firstName");
     expect(request.getParameter("LastName")).andReturn(null);
 
     replay(request);
+    SampleAction action = new SampleAction();
     boolean result = action.checkParameter(request);
     verify(request);
 

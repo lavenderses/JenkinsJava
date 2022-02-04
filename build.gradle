@@ -2,6 +2,8 @@ plugins {
   id 'java'
   id 'com.diffplug.spotless' version '6.2.1'
   id 'jacoco'
+  id 'checkstyle'
+  id 'com.github.spotbugs' version '5.0.5'
 }
 
 repositories {
@@ -13,6 +15,8 @@ dependencies {
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
   testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
   testImplementation 'org.easymock:easymock:4.3'
+
+  spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.11.0'
 }
 
 spotless {
@@ -38,4 +42,8 @@ test {
 
 jacocoTestReport {
   dependsOn test
+}
+
+checkstyle {
+  toolVersion = '8.45'
 }
