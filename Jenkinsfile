@@ -7,12 +7,6 @@ pipeline {
             }
         }
 
-        stage('Echo project name.') {
-            steps {
-                sh "echo \"\nEcho prject name: $PROJECT_NAME\n\""
-            }
-        }
-
         stage('Gradle build.') {
             steps {
                 sh "./gradlew build"
@@ -21,7 +15,7 @@ pipeline {
 
         stage('Build other jobs.') {
             steps {
-                build job: 'theSecondJob', parameters: [text(name: 'FROM_WHERE', value: params.PROJECT_NAME)]
+                build job: 'theSecondJob'
             }
         }
 
