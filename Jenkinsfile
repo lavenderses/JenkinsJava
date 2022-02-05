@@ -1,15 +1,11 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout from GitHub.') {
-            steps {
-                git url: 'git@github.com:nakanoi/JenkinsJava', credentialsId: 'LocalJenkinsSSH'
-            }
-        }
 
         stage('Echooo.') {
             steps {
                 sh "echo \"\nHello.\n\""
+                sh "echo \"\nBranch Name: $BRANCH_NAME\n\""
             }
         }
 
@@ -31,20 +27,20 @@ pipeline {
                 jacoco execPattern: '**/**.exec'
             }
         }
-        
+
         stage('Static code analysis.') {
             steps {
                 checkStyle pattern: 'build/reports/checkstyle/*.xml'
-                spotBugs pattern: 'build/reports/checkstyle/*.xml'
+                spotBugs pattern: 'build/reports/spotbugs/*.xml'
             }
         }
-        
+
         stage('Send email.') {
             steps {
                 step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'behappyday113@gmail.com', sendToIndividuals: false])
             }
         }
-        
+
         stage('Save archive files.') {
             steps {
                 archiveArtifacts artifacts: 'build/libs/*.jar', followSymlinks: false
