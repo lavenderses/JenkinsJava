@@ -47,3 +47,10 @@ jacocoTestReport {
 checkstyle {
   toolVersion = '8.45'
 }
+
+tasks.withType(com.github.spotbugs.snom.SpotBugsTask) {
+  reports {
+    xml.required.set(true)
+    html.required.set(true)
+  }
+}
