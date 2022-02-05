@@ -7,6 +7,12 @@ pipeline {
             }
         }
 
+        stage('Echooo.') {
+            steps {
+                sh "echo \"\nHello.\n\""
+            }
+        }
+
         stage('Gradle build.') {
             steps {
                 sh "./gradlew build"
